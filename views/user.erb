@@ -1,0 +1,17 @@
+<dl>
+  <dt>Forename</dt>
+  <dd><%= user.forename %></dd>
+
+  <dt>Surname</dt>
+  <dd><%= user.surname %></dd>
+
+  <dt>Email</dt>
+  <dd>
+  <%= user.email %>
+  <a href="mailto:<%= user.email %>">email</a>
+  </dd>
+</dl>
+
+<p>
+  <a href="/users/<%= user.id %>/edit">Edit</a>
+</p>

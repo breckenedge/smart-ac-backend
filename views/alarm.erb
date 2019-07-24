@@ -1,0 +1,19 @@
+<dl>
+  <dt>Device</dt>
+  <dd><a href="/devices/<%= alarm.device_id %>"><%= alarm.device.serial_number %></a></dd>
+
+  <dt>Name</dt>
+  <dd><%= alarm.name %></dd>
+
+  <dt>Since</dt>
+  <dd><%= format_time(alarm.created_at) %></dd>
+
+  <dt>Resolved?</dt>
+  <dd><%= alarm.resolved? ? 'Yes' : 'No' %></dd>
+</dl>
+
+<% unless alarm.resolved? %>
+  <form action="/alarms/<%= alarm.id %>/resolve" method="post">
+    <button>Resolve</button>
+  </form>
+<% ***REMOVED*** %>

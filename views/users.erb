@@ -1,0 +1,38 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Forename</th>
+      <th>Surname</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.forename %>
+        </td>
+        <td>
+          <%= user.surname %>
+        </td>
+        <td>
+          <%= user.email %>
+          <a href="mailto:<%= user.email %>">email</a>
+        </td>
+        <td>
+          <a href="/users/<%= user.id %>">Details</a>
+        </td>
+        <td>
+          <a href="/users/<%= user.id %>/edit">Edit</a>
+        </td>
+        <td>
+          <%= erb :delete_user_button, locals: { user: user } %>
+        </td>
+      </tr>
+    <% ***REMOVED*** %>
+  </tbody>
+</table>

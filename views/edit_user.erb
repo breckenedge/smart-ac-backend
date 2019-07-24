@@ -1,0 +1,26 @@
+<form action="<%= user.id ? "/users/#{user.id}" : '/users' %>" method="post">
+  <%= erb :form_errors, locals: { object: user } %>
+
+  <div class="form-group">
+    <label for="forename">Forename</label><br>
+    <input type="text" name="forename" id="forename" value="<%= user.forename %>" class="form-control" autofocus="autofocus">
+  </div>
+
+  <div class="form-group">
+    <label for="surname">Surname</label><br>
+    <input type="text" name="surname" id="surname" value="<%= user.surname %>" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label><br>
+    <input type="email" name="email" id="email" required="true" value="<%= user.email %>" class="form-control">
+  </div>
+
+  <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<p>
+  <%= erb :delete_user_button, locals: { user: user } %>
+</p>

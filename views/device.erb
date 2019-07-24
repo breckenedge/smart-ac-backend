@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-3">
+    <dl>
+      <dt>Serial Number</dt>
+      <dd><%= device.serial_number %></dd>
+
+      <dt>Registration Date</dt>
+      <dd><%= format_date(device.registration_date) %></dd>
+
+      <dt>Firmware Version</dt>
+      <dd><%= device.firmware_version %></dd>
+
+      <dt>Latest Health Status</dt>
+      <dd><%= latest_device_message_health_status || 'None' %></dd>
+
+      <dt>Latest Message Recorded At</dt>
+      <dd><%= format_time(device.latest_device_message_recorded_at) %></dd>
+    </dl>
+
+    <h3>Latest Readings</h3>
+
+    <dl>
+      <% latest_device_message_readings.each do |reading| %>
+        <dt><%= reading.sensor_type.name %></dt>
+        <dd><%= reading.value %></dd>
+      <% ***REMOVED*** %>
+    </dl>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-header">Past 24 hours</div>
+      <div class="card-body">
+        <div class="readings-chart" data-chart-data-uri="/devices/<%= device.id %>/readings.csv"></div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <div class="card-header">Past Week</div>
+      <div class="card-body">
+        <div class="readings-chart" data-chart-data-uri="/devices/<%= device.id %>/reading_averages_by_hour.csv?term=past_week"></div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <div class="card-header">Past Month</div>
+      <div class="card-body">
+        <div class="readings-chart" data-chart-data-uri="/devices/<%= device.id %>/reading_averages_by_hour.csv?term=past_month"></div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <div class="card-header">Past Year</div>
+      <div class="card-body">
+        <div class="readings-chart" data-chart-data-uri="/devices/<%= device.id %>/reading_averages_by_day.csv?term=past_year"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>
+  <a href="/devices/<%= device.id %>/edit">Edit</a>
+</p>

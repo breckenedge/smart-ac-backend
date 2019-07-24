@@ -1,0 +1,48 @@
+<form action="/devices/search" class="form-inline">
+  <input type="search" name="q" value="<%= params***REMOVED***:q] %>" class="form-control" autofocus="true" placeholder="Search">
+  <% if params***REMOVED***:q] %>
+    <a href="/devices">Clear</a>
+  <% ***REMOVED*** %>
+</form>
+
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Serial No.</th>
+      <th>Firmware Version</th>
+      <th>Registration Date</th>
+      <th>Latest Health Status</th>
+      <th>Latest Message Recorded At</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if devices.none? %>
+      <tr>
+        <td colspan="8">None</td>
+      </tr>
+    <% else %>
+      <% devices.each do |device| %>
+        <tr>
+          <td><%= device.serial_number %></td>
+          <td><%= device.firmware_version %></td>
+          <td><%= format_date(device.registration_date) %></td>
+          <td><%= device.latest_health_status || 'None' %></td>
+          <td><%= format_time(device.latest_device_message_recorded_at) %></td>
+          <td><a href="/devices/<%= device.id %>">Details</a></td>
+          <td><a href="/devices/<%= device.id %>/edit">Edit</a></td>
+          <td><%= erb :delete_device_button, locals: { device: device } %></td>
+        </tr>
+      <% ***REMOVED*** %>
+    <% ***REMOVED*** %>
+  </tbody>
+</table>
+
+<p>
+  <a href="/devices/new">New Device</a>
+</p>

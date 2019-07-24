@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'activerecord'
+gem 'bcrypt'
+gem 'pg'
+gem 'puma'
+gem 'rake'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-contrib'

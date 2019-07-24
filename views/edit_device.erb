@@ -1,0 +1,26 @@
+<form action="<%= device.id ? "/devices/#{device.id}" : '/devices' %>" method="post">
+  <%= erb :form_errors, locals: { object: device } %>
+
+  <div class="form-group">
+    <label for="serial_number">Serial Number</label><br>
+    <input type="text" name="serial_number" id="serial_number" value="<%= device.serial_number %>" class="form-control" required="true" autofocus="true" <%= 'readonly' if device.id %>>
+  </div>
+
+  <div class="form-group">
+    <label for="registration_date">Registration Date</label><br>
+    <input type="date" name="registration_date" id="registration_date" value="<%= device.registration_date %>" class="form-control" required="true">
+  </div>
+
+  <div class="form-group">
+    <label for="firmware_version">Firmware Version</label><br>
+    <input type="text" name="firmware_version" id="firmware_version" value="<%= device.firmware_version %>" class="form-control" required="true">
+  </div>
+
+  <div class="form-action">
+    <button type="submit">Save</button>
+  </div>
+</form> 
+
+<hr>
+
+<%= erb :delete_device_button, locals: { device: device } %>
