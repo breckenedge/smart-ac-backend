@@ -17,6 +17,10 @@
       <dd><%= format_time(device.latest_device_message_recorded_at) %></dd>
     </dl>
 
+    <p>
+      <a href="/devices/<%= device.id %>/edit">Edit</a>
+    </p>
+
     <h3>Latest Readings</h3>
 
     <dl>
@@ -63,7 +67,3 @@
     </div>
   </div>
 </div>
-
-<p>
-  <a href="/devices/<%= device.id %>/edit">Edit</a>
-</p>
