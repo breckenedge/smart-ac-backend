@@ -1,4 +1,4 @@
-class CreateDeviceAlarms < ActiveRecord::Migration***REMOVED***5.2]
+class CreateDeviceAlarms < ActiveRecord::Migration[5.2]
   def change
     create_table :device_alarms do |t|
       t.string :name, null: false
@@ -7,6 +7,6 @@ class CreateDeviceAlarms < ActiveRecord::Migration***REMOVED***5.2]
       t.boolean :resolved, null: false, default: false
 
       t.timestamps
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    end
+  end
+end

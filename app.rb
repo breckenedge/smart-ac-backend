@@ -25,44 +25,44 @@ class App < Sinatra::Base
 
   configure :development do
     register Sinatra::Reloader
-***REMOVED***
+  end
 
   before do
     if !current_user
       redirect '/login' unless request.path == '/login' || request.path.starts_with?('/api')
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   get '/' do
     if logged_in?
       redirect '/devices'
     else
       redirect '/login'
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   get '/login' do
     erb :login, login: Login.new
-***REMOVED***
+  end
 
   post '/login' do
     login = Login.new(params)
     if login.authenticated?
-      session***REMOVED***:user_id] = login.user_id
+      session[:user_id] = login.user_id
       redirect '/devices'
     else
       erb :login, login: Login.new
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   get '/logout' do
-    session***REMOVED***:user_id] = nil
+    session[:user_id] = nil
     redirect '/'
-***REMOVED***
+  end
 
   get '/alarms' do
     erb :alarms, locals: { alarms: all_alarms }
-***REMOVED***
+  end
 
   get '/alarms/unresolved' do
     content_type :json
@@ -72,30 +72,30 @@ class App < Sinatra::Base
         'serial_number' => alarm.device.serial_number,
         'href' => "/alarms/#{alarm.id}"
       }
-  ***REMOVED***.to_json
-***REMOVED***
+    end.to_json
+  end
 
   get '/alarms/:id' do
-    erb :alarm, locals: { alarm: find_alarm(params***REMOVED***:id]) }
-***REMOVED***
+    erb :alarm, locals: { alarm: find_alarm(params[:id]) }
+  end
 
   post '/alarms/:id/resolve' do
-    alarm = find_alarm(params***REMOVED***:id])
+    alarm = find_alarm(params[:id])
     alarm.update!(resolved: true)
     redirect '/alarms'
-***REMOVED***
+  end
 
   get '/devices' do
     erb :devices, locals: { devices: all_devices }
-***REMOVED***
+  end
 
   get '/devices/new' do
     erb :edit_device, locals: { device: Device.new }
-***REMOVED***
+  end
 
   get '/devices/search' do
-    erb :devices, locals: { devices: search_all_devices(params***REMOVED***:q]) }
-***REMOVED***
+    erb :devices, locals: { devices: search_all_devices(params[:q]) }
+  end
 
   post '/devices' do
     device = Device.new(params.slice('serial_number', 'registration_date', 'firmware_version'))
@@ -104,52 +104,52 @@ class App < Sinatra::Base
       redirect "/devices/#{device.id}"
     else
       erb :edit_device, locals: { device: Device.new }
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   get '/devices/:id' do
-    device = find_device(params***REMOVED***:id])
+    device = find_device(params[:id])
     erb :device, locals: {
-***REMOVED***
+      device: device,
       latest_device_message_health_status: device.latest_device_message&.health_status,
-      latest_device_message_readings: device.latest_device_message&.device_message_readings || ***REMOVED***]
+      latest_device_message_readings: device.latest_device_message&.device_message_readings || []
     }
-***REMOVED***
+  end
 
   get '/devices/:id/edit' do
-    device = find_device(params***REMOVED***:id])
+    device = find_device(params[:id])
     erb :edit_device, locals: { device: device }
-***REMOVED***
+  end
 
   post '/devices/:id' do
-    device = find_device(params***REMOVED***:id])
-    if params***REMOVED***'delete'] == '1'
+    device = find_device(params[:id])
+    if params['delete'] == '1'
       device.delete
       redirect '/devices'
     elsif device.update(params.slice('registration_date', 'firmware_version'))
       redirect "/devices/#{device.id}"
     else
-      r***REMOVED***er :edit_device, locals: { device: device }
-  ***REMOVED***
-***REMOVED***
+      render :edit_device, locals: { device: device }
+    end
+  end
 
   get '/devices/:id/readings.csv' do
-    device = find_device(params***REMOVED***:id])
+    device = find_device(params[:id])
     content_type 'text/csv'
-    DeviceReadingsChartDataPresenter.new(device: device, term: params***REMOVED***:term]).to_csv
-***REMOVED***
+    DeviceReadingsChartDataPresenter.new(device: device, term: params[:term]).to_csv
+  end
 
   get '/devices/:id/reading_averages_by_hour.csv' do
 
-***REMOVED***
+  end
 
   get '/devices/:id/reading_averages_by_day.csv' do
 
-***REMOVED***
+  end
 
   get '/users' do
     erb :users, locals: { users: all_users }
-***REMOVED***
+  end
 
   post '/users' do
     user = User.new(params.slice('forename', 'surname', 'email'))
@@ -157,35 +157,35 @@ class App < Sinatra::Base
       redirect "/users/#{user.id}"
     else
       erb :edit_user, locals: { user: user }
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   get '/users/new' do
     user = User.new
     erb :edit_user, locals: { user: user }
-***REMOVED***
+  end
 
   get '/users/:id' do
-    user = find_user(params***REMOVED***:id])
+    user = find_user(params[:id])
     erb :user, locals: { user: user }
-***REMOVED***
+  end
 
   get '/users/:id/edit' do
-    user = find_user(params***REMOVED***:id])
+    user = find_user(params[:id])
     erb :edit_user, locals: { user: user }
-***REMOVED***
+  end
 
   post '/users/:id' do
-    user = find_user(params***REMOVED***:id])
-    if params***REMOVED***'delete'] == '1'
+    user = find_user(params[:id])
+    if params['delete'] == '1'
       user.delete
       redirect '/users'
     elsif user.update(params.slice('forename', 'surname', 'email'))
       redirect "/users/#{user.id}"
     else
       erb :edit_user, locals: { user: user }
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   post '/api/devices/register' do
     content_type :json
@@ -197,8 +197,8 @@ class App < Sinatra::Base
     else
       status 422
       { error: 'Unable to register device' }.to_json
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   post '/api/devices/readings' do
     content_type :json
@@ -210,56 +210,56 @@ class App < Sinatra::Base
     else
       status 422
       { error: 'Unable to save readings' }.to_json
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   def all_alarms
     DeviceAlarm.order(created_at: :desc)
-***REMOVED***
+  end
 
   def all_devices
     Device.order(serial_number: :asc)
-***REMOVED***
+  end
 
   def all_users
     User.order(:surname, :forename)
-***REMOVED***
+  end
 
   def find_alarm(id)
     DeviceAlarm.find(id)
-***REMOVED***
+  end
 
   def find_device(id)
     Device.find(id)
-***REMOVED***
+  end
 
   def find_user(id)
     User.find(id)
-***REMOVED***
+  end
 
   def search_all_devices(query)
     Device.where('serial_number LIKE ?', "%#{query}%")
-***REMOVED***
+  end
 
   def unresolved_alarms
     DeviceAlarm.where(resolved: false)
-***REMOVED***
+  end
 
   helpers do
     def logged_in?
-      !session***REMOVED***:user_id].nil?
-  ***REMOVED***
+      !session[:user_id].nil?
+    end
 
     def current_user
-      session***REMOVED***:user_id] ? find_user(session***REMOVED***:user_id]) : nil
-  ***REMOVED***
+      session[:user_id] ? find_user(session[:user_id]) : nil
+    end
 
     def format_date(date)
       date&.strftime('%d %b %Y')
-  ***REMOVED***
+    end
 
     def format_time(time)
       time&.strftime('%d %b %Y %H:%M:%S %p %Z')
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    end
+  end
+end

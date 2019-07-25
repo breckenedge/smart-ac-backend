@@ -4,17 +4,17 @@ class Login
   def initialize(params = {})
     @email = params.fetch('email', '')
     @password = params.fetch('password', '')
-***REMOVED***
+  end
 
   def authenticated?
     user && user.authenticate(password)
-***REMOVED***
+  end
 
   def user
     User.find_by(email: email)
-***REMOVED***
+  end
 
   def user_id
     user&.id
-***REMOVED***
-***REMOVED***
+  end
+end

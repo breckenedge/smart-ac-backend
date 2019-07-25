@@ -1,4 +1,4 @@
-class CreateDevices < ActiveRecord::Migration***REMOVED***5.2]
+class CreateDevices < ActiveRecord::Migration[5.2]
   def change
     create_table :devices do |t|
       t.string :uuid, null: false, index: { unique: true }
@@ -7,6 +7,6 @@ class CreateDevices < ActiveRecord::Migration***REMOVED***5.2]
       t.date :registration_date, null: false
 
       t.timestamps
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    end
+  end
+end

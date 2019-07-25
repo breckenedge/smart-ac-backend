@@ -4,8 +4,8 @@
 
 ### Boot-up message
 
-Upon boot up and before s***REMOVED***ing sensor readings, the AC unit should make an HTTP
-post to the device registration ***REMOVED***point `/api/devices/register` with the
+Upon boot up and before sending sensor readings, the AC unit should make an HTTP
+post to the device registration endpoint `/api/devices/register` with the
 following message:
 
 ```json
@@ -17,8 +17,8 @@ following message:
 
 ### Boot-up message response
 
-The registration ***REMOVED***point will respond with a JSON body containing the
-`device_id` that the AC unit should s***REMOVED*** in sensor messages and the
+The registration endpoint will respond with a JSON body containing the
+`device_id` that the AC unit should send in sensor messages and the
 current time.
 
 ```json
@@ -31,13 +31,13 @@ current time.
 ### Sensor-reading messages
 
 Once a sensor reading is made, the AC unit should make an HTTP POST to the
-device readings ***REMOVED***point `/api/devices/readings`:
+device readings endpoint `/api/devices/readings`:
 
 ```json
 {
   "device_id": "2d85fd01-9766-4996-85a3-50876558d8a0",
   "health_status": "needs_new_filter",
-  "readings": ***REMOVED***
+  "readings": [
     {
       "sequence_number": 1,
       "recorded_at": "2020-01-01T00:00:00+0000",

@@ -1,8 +1,8 @@
 <form action="/devices/search" class="form-inline">
-  <input type="search" name="q" value="<%= params***REMOVED***:q] %>" class="form-control" autofocus="true" placeholder="Search">
-  <% if params***REMOVED***:q] %>
+  <input type="search" name="q" value="<%= params[:q] %>" class="form-control" autofocus="true" placeholder="Search">
+  <% if params[:q] %>
     <a href="/devices">Clear</a>
-  <% ***REMOVED*** %>
+  <% end %>
 </form>
 
 <br>
@@ -38,8 +38,8 @@
           <td><a href="/devices/<%= device.id %>/edit">Edit</a></td>
           <td><%= erb :delete_device_button, locals: { device: device } %></td>
         </tr>
-      <% ***REMOVED*** %>
-    <% ***REMOVED*** %>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 

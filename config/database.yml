@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV.fetch('SMART_AC_BACKEND_DB') { 'smart_ac_back***REMOVED***_development' } %>
+  database: <%= ENV.fetch('SMART_AC_BACKEND_DB') { 'smart_ac_backend_development' } %>
   pool: <%= ENV.fetch('CONCURRENCY') { 5 } %>
   username: <%= ENV.fetch('SMART_AC_BACKEND_DB_USERNAME') { 'aaronbreckenridge' } %>
   password: <%= ENV.fetch('SMART_AC_BACKEND_DB_PASSWORD', nil) %>
@@ -9,5 +9,5 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  url: <%= ENV.fetch('DATABASE_URL') %>
+  url: <%= ENV.fetch('DATABASE_URL', nil) %>
   pool: <%= ENV.fetch('CONCURRENCY') { 10 } %>

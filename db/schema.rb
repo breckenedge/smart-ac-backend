@@ -8,7 +8,7 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recomm***REMOVED***ed that you check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_07_24_234519) do
 
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.boolean "resolved", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"device_id"], name: "index_device_alarms_on_device_id"
-    t.index ***REMOVED***"initial_device_message_id"], name: "index_device_alarms_on_initial_device_message_id"
-***REMOVED***
+    t.index ["device_id"], name: "index_device_alarms_on_device_id"
+    t.index ["initial_device_message_id"], name: "index_device_alarms_on_initial_device_message_id"
+  end
 
   create_table "device_message_readings", force: :cascade do |t|
     t.bigint "sensor_type_id", null: false
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.float "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"device_message_id"], name: "index_device_message_readings_on_device_message_id"
-    t.index ***REMOVED***"sensor_type_id"], name: "index_device_message_readings_on_sensor_type_id"
-***REMOVED***
+    t.index ["device_message_id"], name: "index_device_message_readings_on_device_message_id"
+    t.index ["sensor_type_id"], name: "index_device_message_readings_on_sensor_type_id"
+  end
 
   create_table "device_messages", force: :cascade do |t|
     t.bigint "device_id", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.datetime "received_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"device_id"], name: "index_device_messages_on_device_id"
-***REMOVED***
+    t.index ["device_id"], name: "index_device_messages_on_device_id"
+  end
 
   create_table "device_reading_daily_averages", force: :cascade do |t|
     t.bigint "first_device_message_id", null: false
@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.integer "count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"device_id"], name: "index_device_reading_daily_averages_on_device_id"
-    t.index ***REMOVED***"first_device_message_id"], name: "index_device_reading_daily_averages_on_first_device_message_id"
-    t.index ***REMOVED***"sensor_type_id"], name: "index_device_reading_daily_averages_on_sensor_type_id"
-***REMOVED***
+    t.index ["device_id"], name: "index_device_reading_daily_averages_on_device_id"
+    t.index ["first_device_message_id"], name: "index_device_reading_daily_averages_on_first_device_message_id"
+    t.index ["sensor_type_id"], name: "index_device_reading_daily_averages_on_sensor_type_id"
+  end
 
   create_table "device_reading_hourly_averages", force: :cascade do |t|
     t.bigint "first_device_message_id", null: false
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.integer "count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"device_id"], name: "index_device_reading_hourly_averages_on_device_id"
-    t.index ***REMOVED***"first_device_message_id"], name: "index_device_reading_hourly_averages_on_first_device_message_id"
-    t.index ***REMOVED***"sensor_type_id"], name: "index_device_reading_hourly_averages_on_sensor_type_id"
-***REMOVED***
+    t.index ["device_id"], name: "index_device_reading_hourly_averages_on_device_id"
+    t.index ["first_device_message_id"], name: "index_device_reading_hourly_averages_on_first_device_message_id"
+    t.index ["sensor_type_id"], name: "index_device_reading_hourly_averages_on_sensor_type_id"
+  end
 
   create_table "devices", force: :cascade do |t|
     t.string "uuid", null: false
@@ -82,18 +82,18 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "latest_device_message_id"
-    t.index ***REMOVED***"latest_device_message_id"], name: "index_devices_on_latest_device_message_id"
-    t.index ***REMOVED***"serial_number"], name: "index_devices_on_serial_number", unique: true
-    t.index ***REMOVED***"uuid"], name: "index_devices_on_uuid", unique: true
-***REMOVED***
+    t.index ["latest_device_message_id"], name: "index_devices_on_latest_device_message_id"
+    t.index ["serial_number"], name: "index_devices_on_serial_number", unique: true
+    t.index ["uuid"], name: "index_devices_on_uuid", unique: true
+  end
 
   create_table "sensor_types", force: :cascade do |t|
     t.string "name", null: false
     t.string "units", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"name"], name: "index_sensor_types_on_name", unique: true
-***REMOVED***
+    t.index ["name"], name: "index_sensor_types_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "forename"
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
     t.boolean "locked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ***REMOVED***"email"], name: "index_users_on_email", unique: true
-***REMOVED***
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
 
   add_foreign_key "device_alarms", "device_messages", column: "initial_device_message_id", on_delete: :nullify
   add_foreign_key "device_alarms", "devices", on_delete: :cascade
@@ -118,4 +118,4 @@ ActiveRecord::Schema.define(version: 2019_07_24_234519) do
   add_foreign_key "device_reading_hourly_averages", "devices", on_delete: :cascade
   add_foreign_key "device_reading_hourly_averages", "sensor_types", on_delete: :cascade
   add_foreign_key "devices", "device_message_readings", column: "latest_device_message_id", on_delete: :nullify
-***REMOVED***
+end

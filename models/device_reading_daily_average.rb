@@ -3,4 +3,4 @@ class DeviceReadingDailyAverage < ActiveRecord::Base
   belongs_to :sensor_type
   belongs_to :device
   validates :date, presence: true
-***REMOVED***
+end

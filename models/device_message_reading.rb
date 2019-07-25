@@ -6,9 +6,9 @@ class DeviceMessageReading < ActiveRecord::Base
 
   def recorded_at
     device_message&.recorded_at
-***REMOVED***
+  end
 
   def recorded_on
     recorded_at&.to_date
-***REMOVED***
-***REMOVED***
+  end
+end

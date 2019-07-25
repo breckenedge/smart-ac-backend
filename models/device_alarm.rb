@@ -4,5 +4,5 @@ class DeviceAlarm < ActiveRecord::Base
 
   def device_serial_number
     device&.serial_number
-***REMOVED***
-***REMOVED***
+  end
+end

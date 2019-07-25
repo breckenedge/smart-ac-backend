@@ -8,14 +8,14 @@ class DeviceReadingsChartHourlyDataPresenter
   def initialize(device:, term: :day)
     @device = device
     @term = term
-***REMOVED***
+  end
 
   delegate :each, to: :results
 
   def results
     ActiveRecord::Base.connection.raw_connection
-      .exec_params(query, ***REMOVED***from_time, Time.current, device.id])
-***REMOVED***
+      .exec_params(query, [from_time, Time.current, device.id])
+  end
 
   def from_time
     case term
@@ -27,12 +27,12 @@ class DeviceReadingsChartHourlyDataPresenter
       1.year.ago
     else
       1.day.ago
-  ***REMOVED***
-***REMOVED***
+    end
+  end
 
   def to_csv
     ::CSV.generate do |csv|
-      csv << ***REMOVED***
+      csv << [
         'recorded_at',
         'temperature_c',
         'humidity_%',
@@ -41,13 +41,13 @@ class DeviceReadingsChartHourlyDataPresenter
 
       results.map do |device_message|
         csv << device_message.values
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+      end
+    end
+  end
 
   private
 
   def query
     @@query ||= File.read(File.expand_path('./sql/device_readings_hourly_chart_data_presenter.sql'))
-***REMOVED***
-***REMOVED***
+  end
+end

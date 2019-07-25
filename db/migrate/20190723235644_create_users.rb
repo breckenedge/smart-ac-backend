@@ -1,4 +1,4 @@
-class CreateUsers < ActiveRecord::Migration***REMOVED***5.2]
+class CreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
       t.string :forename
@@ -8,6 +8,6 @@ class CreateUsers < ActiveRecord::Migration***REMOVED***5.2]
       t.boolean :locked, null: false, default: false
 
       t.timestamps
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    end
+  end
+end

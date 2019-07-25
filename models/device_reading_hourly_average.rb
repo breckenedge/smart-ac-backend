@@ -3,4 +3,4 @@ class DeviceReadingHourlyAverage < ActiveRecord::Base
   belongs_to :sensor_type
   belongs_to :device
   validates :hour, presence: true
-***REMOVED***
+end
