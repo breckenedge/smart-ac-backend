@@ -65,3 +65,20 @@ Q: How many AC units are deployed?
 Q: Presumably the AC units speak HTTPS. What message protocol will the AC units speak? Binary protocol, XML, JSON or something else? Will different firmware versions have a different message protocol? For this POC, can I simply use a JSON protocol?
 
 A: You can make them up, the idea would be that you are proposing how these would look like since the client hasn’t been built yet and we have room for accommodating
+
+## Had there been more time, I would have...
+
+1. ...completed the charts for weekly, monthly, and yearly readings.
+1. ...written some tests.
+1. ...added a flexible rules-based approach to generating device alarms. I
+   started designing this and abandoned it due to time.
+1. ...used fancier Postgresql functions for maintaining a moving average. I'm
+   not as familiar with those tools, but I know they exist and would have
+   investigated using them had there been more time.
+1. ...renamed the models `DeviceAlarm` and `DeviceMessageReading` to something
+   shorter.
+1. ...implemented a better JS-based frontend. I looked briefly into React for
+   charting and alarm management, but took the absolutely fastest JS approach I
+   could: pure JS and short polling.
+1. ...rewritten the UI to use flexbox or css grid instead of adding Bootstrap.
+   I didn't think I had time to get my own grid going, and Bootstrap just works.
